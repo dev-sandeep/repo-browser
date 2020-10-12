@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import Stats from './../components/Stats';
-import  { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import SingleDetailList from './../components/SingleDetailList'
 
 
-const NoData = ()=><h3>Search an user</h3>
+const NoData = () => <h3>Search an user</h3>
 const UserResult = ({ data }) => {
     const [stats, setStats] = React.useState({});
     useEffect(() => {
@@ -16,7 +17,7 @@ const UserResult = ({ data }) => {
         });
     }, [data]);
 
-    if(Object.keys(data).length === 0)
+    if (Object.keys(data).length === 0)
         return <NoData />;
     return (
         <section id="user-result">
@@ -25,32 +26,15 @@ const UserResult = ({ data }) => {
             </div>
 
             <div className="details">
-                <div className="card-line">
-                    <div className="title">Name</div>
-                    <div className="detail">{data.name}</div>
-                </div>
-                <div className="card-line">
-                    <div className="title">Company</div>
-                    <div className="detail">{data.company}</div>
-                </div>
-                <div className="card-line">
-                    <div className="title">Bio</div>
-                    <div className="detail">{data.bio}</div>
-                </div>
-
-                <div className="card-line">
-                    <div className="title">Repositories</div>
-                    <div className="detail">
-                        <Link to={`/${data.login}/repos`}>Click here</Link>
-                    </div>
-                </div>
-
-                <div className="card-line">
-                    <div className="title">Blog</div>
-                    <div className="detail">
-                        <a href={data.blog}>click here to go to blog</a>
-                    </div>
-                </div>
+                <SingleDetailList name={"Name"} fullName={data.name} />
+                <SingleDetailList name={"Company"} fullName={data.company} />
+                <SingleDetailList name={"Bio"} fullName={data.Bio} />
+                <SingleDetailList name={"Repositories"} fullName={
+                    <Link to={`/${data.login}/repos`}>Click here</Link>
+                } />
+                <SingleDetailList name={"Blog"} fullName={
+                     <a href={data.blog}>click here to go to blog</a>
+                } />
 
                 <Stats data={stats} />
             </div>

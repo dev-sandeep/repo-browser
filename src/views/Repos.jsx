@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react'
 import SearchForm from '../components/SearchForm';
 import {useSelector} from 'react-redux'
 import {getRepos} from './../common/urlCall';
-import styled from 'styled-components'
-import  { Link } from 'react-router-dom'
+import RepoList from './../components/RepoList'
 
-const StripedSt = styled.tr`
-    background: ${props=>props.num % 2 == 0?'#f1f8ff':'#fff'}
-`;
 const Repos = (props) => {
     const reduxData = useSelector(state=>state);
     const [originalData, setOriginalData] = useState([]);
@@ -82,27 +78,7 @@ const Repos = (props) => {
                 <input disabled={searchText.length > 0} type="checkbox" checked={isStarSorted} onChange={sortByStarHandler} />
                 <small>Sort by stars</small>
             </div>
-            <table id="table-repo">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Language</th>
-                    <th>Stars</th>
-                </tr>
-                </thead>
-                <tbody>
-                {repoData.map((el, index)=>(
-                    <StripedSt num={index}>
-                      <td>
-                          <Link to={`/${selectedUser}/repos/${el.name}`}>{el.name}</Link></td>
-                      <td>{el.description}</td>
-                      <td className="language">{el.language}</td>
-                      <td className="stars">{el.stargazers_count}</td>
-                  </StripedSt>
-                ))}
-                </tbody>
-            </table>
+            <RepoList repoData={repoData} selectedUser={selectedUser} />
         </section>
     );
 }

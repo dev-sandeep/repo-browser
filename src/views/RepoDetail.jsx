@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { Styled } from 'styled-components'
-import UserForm from '../components/SearchForm';
 import {getRepoDetail} from './../common/urlCall';
 import Stats from './../components/Stats';
+import SingleDetailList from './../components/SingleDetailList'
+
 const RepoDetail = (props) => {
     const repoName = props.match.params.repo;
     const user = props.match.params.user;
@@ -26,26 +26,11 @@ const RepoDetail = (props) => {
             <div className="main-repo">
                 <div></div>
                 <div className="details">
-                    <div className="card-line">
-                        <div className="title">Name</div>
-                        <div className="detail">{data.full_name}</div>
-                    </div>
-                    <div className="card-line">
-                        <div className="title">Description</div>
-                        <div className="detail">{data.description}</div>
-                    </div>
-                    <div className="card-line">
-                        <div className="title">Github Link</div>
-                        <div className="detail">{data.html_url}</div>
-                    </div>
-                    <div className="card-line">
-                        <div className="title">Created On</div>
-                        <div className="detail">{data.created_at}</div>
-                    </div>
-                    <div className="card-line">
-                        <div className="title">Last Update</div>
-                        <div className="detail">{data.updated_at}</div>
-                    </div>
+                    <SingleDetailList name={"Name"} fullName={data.full_name} />
+                    <SingleDetailList name={"Description"} fullName={data.description} />
+                    <SingleDetailList name={"Github Link"} fullName={data.html_url} />
+                    <SingleDetailList name={"Created On"} fullName={data.created_at} />
+                    <SingleDetailList name={"Last Update"} fullName={data.updated_at} />
 
                     <Stats data={stats} />
                 </div>
