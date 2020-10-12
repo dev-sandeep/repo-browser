@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Stats = ({data}) => {
-    console.log(data);
     if(Object.keys(data).length == 0)
         return null;
 
