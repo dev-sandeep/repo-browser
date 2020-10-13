@@ -36,20 +36,22 @@ const reduxData = createStore(reducer);
 function App() {
   return (
     <div className="App">
+       <Router basename={window.location.pathname || ''}>
       <Header title={"Awesome Github"} />
       <Suspense fallback={<Fallback />}>
         <Provider store={reduxData}>
           <RouterSt>
-            <Router basename={window.location.pathname || ''}>
+           
                 <Switch>
                 <Route exact path="/" component={Users} />
                 <Route exact path="/:user/repos" component={Repos} />
                 <Route exact path="/:user/repos/:repo" component={RepoDetails} />
                 </Switch>
-              </Router>
+            
             </RouterSt>
         </Provider>
       </Suspense>
+      </Router>
     </div>
   );
 }

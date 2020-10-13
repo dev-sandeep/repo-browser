@@ -9,13 +9,13 @@ const Detail = styled.div`
 
 
 
-const SingleDetailList = ({name, fullName}) => {
+const SingleDetailList = ({link, name, fullName}) => {
     if(!fullName || fullName.length === 0)
         return null;
         
     return (<div>
         <div className="title">{name}</div>
-        <Detail>{fullName}</Detail>
+        <Detail><a href={link}>{fullName}</a></Detail>
     </div>);
 }
 

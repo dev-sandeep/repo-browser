@@ -4,17 +4,12 @@ import {useSelector} from 'react-redux'
 import {getRepos} from './../common/urlCall';
 import RepoList from './../components/RepoList'
 import MainHeading from './../components/MainHeading'
-import styled from 'styled-components';
+import Loader from './../components/Loader'
 
-const divider = styled.hr`
-    margin{
-        top:15px;
-        bottom: 15px;
-    }
-`;
 const Repos = (props) => {
     const reduxData = useSelector(state=>state);
     const [originalData, setOriginalData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [isStarSorted, setIsStarSorted] = useState(false);
     const [repoData, setRepoData] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -24,9 +19,14 @@ const Repos = (props) => {
      * onloading first time make an API call and fetch the data
      */
     useEffect(()=>{
+        setIsLoading(true);
         getRepos(selectedUser).then((data)=>{
             setRepoData(data);
             setOriginalData(data);
+            setIsLoading(false);
+        },(e)=>{
+            console.error(e);
+            setIsLoading(false);
         })
     },[]);
 
@@ -87,7 +87,9 @@ const Repos = (props) => {
                 <small>Sort by stars</small>
             </div>
             <divider></divider>
-            <RepoList repoData={repoData} selectedUser={selectedUser} />
+            <Loader isLoading={isLoading}>
+                <RepoList repoData={repoData} selectedUser={selectedUser} />
+            </Loader>
         </section>
     );
 }

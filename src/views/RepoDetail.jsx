@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {getRepoDetail} from './../common/urlCall';
 import Stats from './../components/Stats';
+import Loader from './../components/Loader'
 import SingleDetailList from './../components/SingleDetailList'
 import MainHeading from './../components/MainHeading'
 import Moment from 'react-moment';
@@ -16,8 +17,10 @@ const RepoDetail = (props) => {
     const user = props.match.params.user;
 
     const [data, setData] = React.useState({});
+    const [isLoader, setIsLoader] = React.useState(false);
     const [stats, setStats] = React.useState([]);
     useEffect(()=>{
+        setIsLoader(true);
         getRepoDetail(user, repoName).then((data)=>{
             setData(data);
             setStats({
@@ -26,6 +29,11 @@ const RepoDetail = (props) => {
                 "Forks": data.forks,
                 "Open Issues": data.open_issues_count
             });
+
+            setIsLoader(false);
+        }, (e)=>{
+            console.error(e);
+            setIsLoader(false);
         })
     },[]);
     return (
@@ -34,19 +42,21 @@ const RepoDetail = (props) => {
                 {data.name}
             </MainHeading>
             <hr />
-            <RepoWrapper>
-                <div></div>
-                <div className="details">
-                    <SingleDetailList name={"Name"} fullName={data.full_name} />
-                    <SingleDetailList name={"Description"} fullName={data.description} />
-                    <SingleDetailList name={"Github Link"} fullName={data.html_url} />
-                    <SingleDetailList name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
-                    <SingleDetailList name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
+            <Loader isLoading={isLoader}>
+                <RepoWrapper>
+                    <div></div>
+                    <div className="details">
+                        <SingleDetailList name={"Name"} fullName={data.full_name} />
+                        <SingleDetailList name={"Description"} fullName={data.description} />
+                        <SingleDetailList name={"Github Link"} link={data.html_url} fullName={data.html_url} />
+                        <SingleDetailList name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
+                        <SingleDetailList name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
 
-                    <Stats data={stats} />
-                </div>
+                        <Stats data={stats} />
+                    </div>
 
-            </RepoWrapper>
+                </RepoWrapper>
+            </Loader>
         </section>
     );
 }

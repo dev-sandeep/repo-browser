@@ -3,7 +3,7 @@ import  { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StripedSt = styled.tr`
-    background: ${props=>props.num % 2 == 0?'#f1f8ff':'#fff'}
+    background: ${props=>props.num % 2 == 0?'#f2f2f2':'#fff'}
 `;
 
 const Table = styled.table`
@@ -30,7 +30,7 @@ const RepoList = ({repoData, selectedUser}) => {
                 </tr>
             </thead>
             <tbody>
-                {repoData.map((el, index) => (
+                {repoData.length > 0 && repoData.map((el, index) => (
                     <StripedSt num={index}>
                         <td>
                             <Link to={`/${selectedUser}/repos/${el.name}`}>{el.name}</Link></td>
@@ -39,6 +39,12 @@ const RepoList = ({repoData, selectedUser}) => {
                         <td className="stars">{el.stargazers_count}</td>
                     </StripedSt>
                 ))}
+
+                {repoData.length == 0?(
+                    <tr>
+                        <td colSpan="4">No Repository found</td>
+                    </tr>
+                ):(<></>)}
             </tbody>
         </Table>
     );

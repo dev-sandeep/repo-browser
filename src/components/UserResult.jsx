@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import SingleDetailList from './../components/SingleDetailList'
 
 const Image = styled.img`
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
     margin: 15%;
 `;
 

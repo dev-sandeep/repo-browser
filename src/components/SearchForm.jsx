@@ -11,10 +11,8 @@ const SearchInput = styled.input`
     margin-top: 10px;
     padding: 5px;
     padding-left: 4px;
-    box-shadow: 3px 3px 6px grey;
-
-    &:focus {
-    box-shadow: 3px 3px 16px grey;
+    &::placeholder{
+        font-weight:200;
     }
 `;
 
@@ -34,7 +32,11 @@ const SearchForm = ({placeholder, onChange, defaultText}) => {
     return (
         <form id="user-serch-form" onSubmit={e=>e.preventDefault()}>
             <SearchDiv>
-                <SearchInput defaultValue={defaultText} onChange={onnChangeHandler} type="text" placeholder={placeholder} />
+                <SearchInput 
+                    defaultValue={defaultText} 
+                    onChange={onnChangeHandler} 
+                    type="text" 
+                    placeholder={placeholder} />
             </SearchDiv>
         </form>
     );

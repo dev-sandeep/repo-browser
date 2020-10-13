@@ -2,12 +2,15 @@ import React, { useEffect } from 'react'
 import SearchForm from '../components/SearchForm'
 import UserList from '../components/UserResult'
 import MainHeading from '../components/MainHeading'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import { getUser } from './../common/urlCall'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components';
 
 const UserSearch = () => {
     const [userData, setUserData] = React.useState({});
+    const [isLoading, setIsLoading] = React.useState(false);
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
 
@@ -22,15 +25,18 @@ const UserSearch = () => {
 
     const onChangeHandler = (val) => {
         //make an API call
+        setIsLoading(true);
+        dispatch({ type: 'set-userid', id: val });
         getUser(val).then((data) => {
             if (Object.keys(data).length > 0) {
-                dispatch({ type: 'set-userid', id: data.login });
                 setUserData(data);
                 //storing the data in rest
                 dispatch({ type: 'set-user-data', data: data });
+                setIsLoading(false);
             }
         }, () => {
-            console.error("Error occurred");
+            setUserData({});
+            setIsLoading(false);
         });
     }
 
@@ -38,7 +44,15 @@ const UserSearch = () => {
         <section id="user-search-page">
             <MainHeading>Search</MainHeading>
             <SearchForm defaultText={selector.userId} onChange={onChangeHandler} placeholder={"Search by github account"} />
-            <UserList data={userData} />
+            
+            <Loader isLoading={isLoading}>
+                {Object.keys(userData).length > 0?(
+                    <UserList data={userData} />
+                ):(
+                    <Message text={selector.userId?'No such user exists':'Search an user'} />
+                )}
+                
+            </Loader>
         </section>
     );
 }
