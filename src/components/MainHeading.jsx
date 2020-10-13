@@ -2,8 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MainHeadingSt = styled.div`
-    font-size: 2em;
-    font-weight: 200;
+    background: #eeeeee;    
+    padding: 10px;
+    padding-left: 3px;
+    font-size: 3em;
+    font-weight: 300;
+    text-transform: capitalize;
     margin {
     bottom: 20px;
     }

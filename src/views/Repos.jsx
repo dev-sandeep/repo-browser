@@ -4,7 +4,14 @@ import {useSelector} from 'react-redux'
 import {getRepos} from './../common/urlCall';
 import RepoList from './../components/RepoList'
 import MainHeading from './../components/MainHeading'
+import styled from 'styled-components';
 
+const divider = styled.hr`
+    margin{
+        top:15px;
+        bottom: 15px;
+    }
+`;
 const Repos = (props) => {
     const reduxData = useSelector(state=>state);
     const [originalData, setOriginalData] = useState([]);
@@ -79,6 +86,7 @@ const Repos = (props) => {
                 <input disabled={searchText.length > 0} type="checkbox" checked={isStarSorted} onChange={sortByStarHandler} />
                 <small>Sort by stars</small>
             </div>
+            <divider></divider>
             <RepoList repoData={repoData} selectedUser={selectedUser} />
         </section>
     );

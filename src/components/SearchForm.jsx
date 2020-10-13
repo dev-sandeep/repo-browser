@@ -22,7 +22,7 @@ const SearchDiv = styled.div`
     display: flex;
 `;
 
-const SearchForm = ({placeholder, onChange}) => {
+const SearchForm = ({placeholder, onChange, defaultText}) => {
     const searchAction = debounce((val)=>{
         onChange(val);
     }, 350);
@@ -34,7 +34,7 @@ const SearchForm = ({placeholder, onChange}) => {
     return (
         <form id="user-serch-form" onSubmit={e=>e.preventDefault()}>
             <SearchDiv>
-                <SearchInput onChange={onnChangeHandler} type="text" placeholder={placeholder} />
+                <SearchInput defaultValue={defaultText} onChange={onnChangeHandler} type="text" placeholder={placeholder} />
             </SearchDiv>
         </form>
     );

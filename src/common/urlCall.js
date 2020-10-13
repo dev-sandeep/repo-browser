@@ -1,8 +1,18 @@
 import Axios from 'axios';
 import {
+    setupCache
+} from 'axios-cache-adapter'
+import {
     BASE_URL
 } from './config'
 
+const cache = setupCache({
+    maxAge: 15 * 60 * 100
+});
+
+const api = Axios.create({
+    adapter: cache.adapter
+});
 
 const getUser = (user) => {
     let url = `${BASE_URL}users/${user}`;
@@ -49,7 +59,7 @@ function get(url) {
     }
 
     return new Promise((resolve, reject) => {
-        Axios.get(url).then((data) => {
+        api.get(url).then((data) => {
             resolve(data);
         }, (e) => {
             reject(e);

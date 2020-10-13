@@ -2,12 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StatsRow = styled.div`
-    display: grid;
     grid-template-columns: 1fr 1fr;
     width:400px;
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 17px;
 
     & > div{
-        margin: auto;
+        margin: 0 auto;
         margin-top:15px;
         margin-bottom: 15px;
         text-align: center

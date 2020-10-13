@@ -6,6 +6,12 @@ function Reducer(state = [], action) {
                 userId: action.id
             }
         }
+        case 'set-user-data': {
+            return {
+                ...state,
+                userData: action.data
+            }
+        }
         default:
             return state
     }

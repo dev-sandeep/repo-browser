@@ -4,7 +4,13 @@ import Stats from './../components/Stats';
 import SingleDetailList from './../components/SingleDetailList'
 import MainHeading from './../components/MainHeading'
 import Moment from 'react-moment';
+import styled from 'styled-components';
 
+const RepoWrapper = styled.div`
+    justify-content: center;
+    display: grid;
+    margin-top: 5%;
+`;
 const RepoDetail = (props) => {
     const repoName = props.match.params.repo;
     const user = props.match.params.user;
@@ -28,7 +34,7 @@ const RepoDetail = (props) => {
                 {data.name}
             </MainHeading>
             <hr />
-            <div className="main-repo">
+            <RepoWrapper>
                 <div></div>
                 <div className="details">
                     <SingleDetailList name={"Name"} fullName={data.full_name} />
@@ -40,7 +46,7 @@ const RepoDetail = (props) => {
                     <Stats data={stats} />
                 </div>
 
-            </div>
+            </RepoWrapper>
         </section>
     );
 }
