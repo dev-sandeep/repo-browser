@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchForm from '../components/SearchForm'
 import UserList from '../components/UserResult'
+import MainHeading from '../components/MainHeading'
 import {getUser} from './../common/urlCall'
 import {useDispatch} from 'react-redux'
 
@@ -19,7 +20,7 @@ const UserSearch = () => {
 
     return (
         <section id="user-search-page">
-            <div className="main-heading">Search</div>
+            <MainHeading>Search</MainHeading>
             <SearchForm onChange={onChangeHandler} placeholder={"Search by github account"} />
             <UserList data={userData} />
         </section>

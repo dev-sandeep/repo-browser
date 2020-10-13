@@ -6,9 +6,21 @@ const StripedSt = styled.tr`
     background: ${props=>props.num % 2 == 0?'#f1f8ff':'#fff'}
 `;
 
+const Table = styled.table`
+    width: 800px;
+    margin-top: 20px;
+    padding: 10px;
+
+    & th, & td{
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid gray; 
+    }
+`;
+
 const RepoList = ({repoData, selectedUser}) => {
     return (
-        <table id="table-repo">
+        <Table>
             <thead>
                 <tr>
                     <th>Name</th>
@@ -28,7 +40,7 @@ const RepoList = ({repoData, selectedUser}) => {
                     </StripedSt>
                 ))}
             </tbody>
-        </table>
+        </Table>
     );
 }
 

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import {getRepoDetail} from './../common/urlCall';
 import Stats from './../components/Stats';
 import SingleDetailList from './../components/SingleDetailList'
+import MainHeading from './../components/MainHeading'
+import Moment from 'react-moment';
 
 const RepoDetail = (props) => {
     const repoName = props.match.params.repo;
@@ -22,15 +24,18 @@ const RepoDetail = (props) => {
     },[]);
     return (
         <section id="repo-detail">
-            <div className="main-heading">{data.name}</div>
+            <MainHeading>
+                {data.name}
+            </MainHeading>
+            <hr />
             <div className="main-repo">
                 <div></div>
                 <div className="details">
                     <SingleDetailList name={"Name"} fullName={data.full_name} />
                     <SingleDetailList name={"Description"} fullName={data.description} />
                     <SingleDetailList name={"Github Link"} fullName={data.html_url} />
-                    <SingleDetailList name={"Created On"} fullName={data.created_at} />
-                    <SingleDetailList name={"Last Update"} fullName={data.updated_at} />
+                    <SingleDetailList name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
+                    <SingleDetailList name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
 
                     <Stats data={stats} />
                 </div>

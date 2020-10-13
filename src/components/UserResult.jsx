@@ -4,6 +4,26 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import SingleDetailList from './../components/SingleDetailList'
 
+const Image = styled.img`
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    margin: 15%;
+`;
+
+const UserResultSection = styled.section`
+    justify-content: center;
+    display: grid;
+`;
+
+const ProfilPicDiv = styled.div`
+    margin-top: 5%;
+    text-align: center;
+`;
+
+const DetailDiv = styled.div`
+    max-width: 600px;
+`;
 
 const NoData = () => <h3>Search an user</h3>
 const UserResult = ({ data }) => {
@@ -20,12 +40,12 @@ const UserResult = ({ data }) => {
     if (Object.keys(data).length === 0)
         return <NoData />;
     return (
-        <section id="user-result">
-            <div className="profile-pic">
-                <img src={data.avatar_url} />
-            </div>
+        <UserResultSection>
+            <ProfilPicDiv>
+                <Image src={data.avatar_url} />
+            </ProfilPicDiv>
 
-            <div className="details">
+            <DetailDiv>
                 <SingleDetailList name={"Name"} fullName={data.name} />
                 <SingleDetailList name={"Company"} fullName={data.company} />
                 <SingleDetailList name={"Bio"} fullName={data.Bio} />
@@ -33,12 +53,12 @@ const UserResult = ({ data }) => {
                     <Link to={`/${data.login}/repos`}>Click here</Link>
                 } />
                 <SingleDetailList name={"Blog"} fullName={
-                     <a href={data.blog}>click here to go to blog</a>
+                    <a href={data.blog}>click here to go to blog</a>
                 } />
 
                 <Stats data={stats} />
-            </div>
-        </section>
+            </DetailDiv>
+        </UserResultSection>
     );
 }
 

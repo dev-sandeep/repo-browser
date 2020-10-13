@@ -3,6 +3,7 @@ import SearchForm from '../components/SearchForm';
 import {useSelector} from 'react-redux'
 import {getRepos} from './../common/urlCall';
 import RepoList from './../components/RepoList'
+import MainHeading from './../components/MainHeading'
 
 const Repos = (props) => {
     const reduxData = useSelector(state=>state);
@@ -71,7 +72,7 @@ const Repos = (props) => {
 
     return (
         <section id="main-repo">
-            <div className="main-heading">Repositories</div>
+            <MainHeading>Repositories</MainHeading>
             <SearchForm onChange={onChangeHandler} placeholder={"Search a repository"} />
             <div>
                 <br />

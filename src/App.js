@@ -17,9 +17,18 @@ const Users = lazy(()=>import("./views/UserSearch"));
 const Fallback = ()=>(<h4>Loading...</h4>)
 
 const RouterSt = styled.div`
-  margin:15px;
+  background: #eaebec;
+  margin-top: 0px;
+  padding: 10px;
   justify-content: center;
   display: flex;
+  min-height: 100vh;
+  & > section{
+    padding: 10px;
+    background: #fff;
+    width:800px;
+    box-shadow: 5px 5px 10px #bababa;
+  }
 `;
 
 const reduxData = createStore(reducer);
