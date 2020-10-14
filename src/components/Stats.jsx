@@ -32,7 +32,7 @@ const StatsNum = styled.div`
  * @param:stats Array of objects having the key and number
  */
 const Stats = ({data}) => {
-    if(Object.keys(data).length == 0)
+    if(Object.keys(data).length === 0)
         return null;
 
     return (
@@ -49,7 +49,7 @@ const Stats = ({data}) => {
     );
 }
 
-SearchForm.propTypes = {
+Stats.propTypes = {
     data: PropTypes.array.isRequired,
 }
 

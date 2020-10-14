@@ -34,7 +34,7 @@ const Repos = (props) => {
             console.error(e);
             setIsLoading(false);
         })
-    },[]);
+    },[selectedUser]);
 
     /**
      * responsible for handling the text search

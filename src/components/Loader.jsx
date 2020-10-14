@@ -53,7 +53,7 @@ const Loader = (props)=>{
 }
 
 Loader.propTypes = {
-    isLoading: PropTypes.bool,
+    isLoading: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired
 }
 

@@ -41,7 +41,7 @@ const RepoDetail = (props) => {
             console.error(e);
             setIsLoader(false);
         })
-    },[]);
+    },[user, repoName]);
     return (
         <section id="repo-detail">
             <MainHeading>

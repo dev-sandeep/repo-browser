@@ -25,7 +25,7 @@ const UserSearch = () => {
         if (selector.userId) {
             setUserData(selector.userData);
         }
-    }, []);
+    }, [selector.userId, selector.userData]);
 
     const onChangeHandler = (val) => {
         //make an API call
@@ -50,7 +50,7 @@ const UserSearch = () => {
             <SearchForm defaultText={selector.userId} onChange={onChangeHandler} placeholder={"Search by github account"} />
             
             <Loader isLoading={isLoading}>
-                {Object.keys(userData).length > 0?(
+                {typeof userData == 'object' && Object.keys(userData).length > 0?(
                     <UserList data={userData} />
                 ):(
                     <Message text={selector.userId?'No such user exists':'Search an user'} />

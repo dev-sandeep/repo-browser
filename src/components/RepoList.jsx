@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
 const StripedSt = styled.tr`
-    background: ${props=>props.num % 2 == 0?'#f2f2f2':'#fff'}
+    background: ${props=>props.num % 2 === 0?'#f2f2f2':'#fff'}
 `;
 
 const Table = styled.table`
@@ -50,7 +50,7 @@ const RepoList = ({repoData, selectedUser}) => {
                     </StripedSt>
                 ))}
 
-                {repoData.length == 0?(
+                {repoData.length === 0?(
                     <tr>
                         <td colSpan="4">No Repository found</td>
                     </tr>
