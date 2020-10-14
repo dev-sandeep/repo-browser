@@ -1,3 +1,8 @@
+/**
+ * responsible for loading all the details of a repo
+ * @author Sandeep G
+ * @since 20201014
+ */
 import React, { useEffect } from 'react'
 import {getRepoDetail} from './../common/urlCall';
 import Stats from './../components/Stats';
@@ -6,6 +11,7 @@ import SingleDetailList from './../components/SingleDetailList'
 import MainHeading from './../components/MainHeading'
 import Moment from 'react-moment';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const RepoWrapper = styled.div`
     justify-content: center;
@@ -61,4 +67,13 @@ const RepoDetail = (props) => {
     );
 }
 
+
+RepoDetail.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            user: PropTypes.string,
+            repo: PropTypes.string
+        })
+    }),
+}
 export default RepoDetail;

@@ -1,3 +1,8 @@
+/**
+ * responsible for loading the list of repositories
+ * @author Sandeep G
+ * @since 20201014
+ */
 import React, { useEffect, useState } from 'react'
 import SearchForm from '../components/SearchForm';
 import {useSelector} from 'react-redux'
@@ -5,6 +10,7 @@ import {getRepos} from './../common/urlCall';
 import RepoList from './../components/RepoList'
 import MainHeading from './../components/MainHeading'
 import Loader from './../components/Loader'
+import PropTypes from 'prop-types';
 
 const Repos = (props) => {
     const reduxData = useSelector(state=>state);
@@ -92,6 +98,14 @@ const Repos = (props) => {
             </Loader>
         </section>
     );
+}
+
+Repos.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            user: PropTypes.string
+        })
+    }),
 }
 
 export default Repos;

@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from 'react'
+/**
+ * responsible for loading the list of repositories
+ * @author Sandeep G
+ * @since 20201014
+ */
+import React from 'react'
 import  { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 const StripedSt = styled.tr`
     background: ${props=>props.num % 2 == 0?'#f2f2f2':'#fff'}
@@ -18,6 +24,10 @@ const Table = styled.table`
     }
 `;
 
+/**
+ * @props:repoData  Array of repositories of the selected user
+ * @proos:selectedUser Name/ID of the selected user 
+ */
 const RepoList = ({repoData, selectedUser}) => {
     return (
         <Table>
@@ -31,7 +41,7 @@ const RepoList = ({repoData, selectedUser}) => {
             </thead>
             <tbody>
                 {repoData.length > 0 && repoData.map((el, index) => (
-                    <StripedSt num={index}>
+                    <StripedSt key={el.name+index} num={index}>
                         <td>
                             <Link to={`/${selectedUser}/repos/${el.name}`}>{el.name}</Link></td>
                         <td>{el.description}</td>
@@ -48,6 +58,11 @@ const RepoList = ({repoData, selectedUser}) => {
             </tbody>
         </Table>
     );
+}
+
+RepoList.propTypes = {
+    repoData:PropTypes.array.isRequired,
+    selectedUser: PropTypes.string.isRequired
 }
 
 export default RepoList;

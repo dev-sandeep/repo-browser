@@ -1,8 +1,14 @@
+/**
+ * A composite component responsible for loading the details section of the user
+ * @author Sandeep G
+ * @since 20201014
+ */
 import React, { useEffect } from 'react'
 import Stats from './../components/Stats';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import SingleDetailList from './../components/SingleDetailList'
+import PropTypes from 'prop-types';
 
 const Image = styled.img`
     width: 250px;
@@ -60,6 +66,10 @@ const UserResult = ({ data }) => {
             </DetailDiv>
         </UserResultSection>
     );
+}
+
+UserResult.propTypes = {
+    data: PropTypes.array.isRequired,
 }
 
 export default UserResult;

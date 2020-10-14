@@ -1,3 +1,8 @@
+/**
+ * responsible for loading the details of an user on search
+ * @author Sandeep G
+ * @since 20201014
+ */
 import React, { useEffect } from 'react'
 import SearchForm from '../components/SearchForm'
 import UserList from '../components/UserResult'
@@ -6,7 +11,6 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUser } from './../common/urlCall'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components';
 
 const UserSearch = () => {
     const [userData, setUserData] = React.useState({});

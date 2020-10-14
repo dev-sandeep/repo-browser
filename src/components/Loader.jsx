@@ -1,5 +1,11 @@
+/**
+ * responsible for show the Loader
+ * @author Sandeep G
+ * @since 20201014
+ */
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 export const MessageWrapper = styled.div`
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -32,6 +38,9 @@ export const MessageWrapper = styled.div`
 
     display: ${props=>props.visible?'block':'none'};
 `;
+/**
+ * @props:isLoading boolean status bit to decide whether to show the loader or not
+ */
 const Loader = (props)=>{
     if(!props.isLoading)
         return (<>{props.children}</>);
@@ -41,6 +50,11 @@ const Loader = (props)=>{
             <div>Loading...</div>
         </MessageWrapper>
     );
+}
+
+Loader.propTypes = {
+    isLoading: PropTypes.bool,
+    children: PropTypes.node.isRequired
 }
 
 export default Loader;

@@ -1,6 +1,13 @@
+/**
+ * repsponsible for loading the Header/Navbar
+ * @author Sandeep G
+ * @since 20201014
+ */
+
 import React from 'react';
 import styled from 'styled-components'
 import  { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 const HeaderSt = styled.nav`
 padding: 15px;
@@ -15,8 +22,10 @@ const LinkSt = styled(Link)`
     color: #ffff;
 `;
 
+/**
+ * props:title - The main website/navigation name
+ */
 const Header = ({title})=>{
-
     return (
         <HeaderSt>
              <div className="main-title">
@@ -24,6 +33,10 @@ const Header = ({title})=>{
             </div>
         </HeaderSt>
     );
+}
+
+Header.propTypes = {
+    title: PropTypes.string
 }
 
 export default Header;
