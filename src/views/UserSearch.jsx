@@ -11,7 +11,11 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUser } from './../common/urlCall'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 
+const UserSearchSection = styled.section`
+background: #1C4C7D;
+`;
 const UserSearch = () => {
     const [userData, setUserData] = React.useState({});
     const [isLoading, setIsLoading] = React.useState(false);
@@ -45,7 +49,7 @@ const UserSearch = () => {
     }
 
     return (
-        <section id="user-search-page">
+        <UserSearchSection>
             <MainHeading>Search</MainHeading>
             <SearchForm defaultText={selector.userId} onChange={onChangeHandler} placeholder={"Search by github account"} />
             
@@ -57,7 +61,7 @@ const UserSearch = () => {
                 )}
                 
             </Loader>
-        </section>
+        </UserSearchSection>
     );
 }
 export default UserSearch;

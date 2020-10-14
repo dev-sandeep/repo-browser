@@ -8,12 +8,14 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
 const MainHeadingSt = styled.div`
-    background: #eeeeee;    
     padding: 10px;
     padding-left: 3px;
     font-size: 3em;
     font-weight: 300;
     text-transform: capitalize;
+    color: #ffff;
+    font-weight: 700;
+    font-size: 4em;
     margin {
     bottom: 20px;
     }

@@ -52,11 +52,10 @@ const RepoDetail = (props) => {
                 <RepoWrapper>
                     <div></div>
                     <div className="details">
-                        <SingleDetailList name={"Name"} fullName={data.full_name} />
-                        <SingleDetailList name={"Description"} fullName={data.description} />
-                        <SingleDetailList name={"Github Link"} link={data.html_url} fullName={data.html_url} />
-                        <SingleDetailList name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
-                        <SingleDetailList name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
+                        <SingleDetailList fromDetail={true} name={"Name"} fullName={data.full_name} />
+                        <SingleDetailList fromDetail={true} name={"Github Link"} link={data.html_url} fullName={data.html_url} />
+                        <SingleDetailList fromDetail={true} name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
+                        <SingleDetailList fromDetail={true} name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
 
                         <Stats data={stats} />
                     </div>

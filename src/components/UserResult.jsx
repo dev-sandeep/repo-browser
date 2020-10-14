@@ -59,7 +59,7 @@ const UserResult = ({ data }) => {
                     <Link to={`/${data.login}/repos`}>Click here</Link>
                 } />
                 <SingleDetailList name={"Blog"} fullName={
-                    <a href={data.blog}>click here to go to blog</a>
+                    <a href={data.blog}>Click here to go to blog</a>
                 } />
 
                 <Stats data={stats} />

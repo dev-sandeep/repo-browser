@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
 const StripedSt = styled.tr`
-    background: ${props=>props.num % 2 === 0?'#f2f2f2':'#fff'}
+    background: ${props=>props.num % 2 === 0?'#1B4C7B':'#002549'}
 `;
 
 const Table = styled.table`

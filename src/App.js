@@ -25,9 +25,16 @@ const RouterSt = styled.div`
   min-height: 100vh;
   & > section{
     padding: 10px;
-    background: #fff;
     width:800px;
     box-shadow: 5px 5px 10px #bababa;
+    background: #1B4C7B;
+    color: #fff;
+    border-top: 10px solid #ffc22e;
+  }
+
+  & a{
+    text-decoration: none;
+    color: #fff;  
   }
 `;
 

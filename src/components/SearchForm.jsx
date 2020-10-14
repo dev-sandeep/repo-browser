@@ -9,16 +9,32 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
 const SearchInput = styled.input`
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+
     display: block;
-    width: 600px;
     height: 30px;
     font-size: 1.5em;
     font-weight: 200;
     margin-top: 10px;
     padding: 5px;
     padding-left: 4px;
+    border: 0px;
+    border-bottom: 1px solid black;
+    width: 100%;
+    color: #fff;
     &::placeholder{
         font-weight:200;
+        color: #fff;
+    }
+
+    &::focus{
+        outline: none;
+        color: #fff;
+        width:100%;
     }
 `;
 
