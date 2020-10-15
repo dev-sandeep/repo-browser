@@ -92,7 +92,6 @@ const Repos = (props) => {
                 <input disabled={searchText.length > 0} type="checkbox" checked={isStarSorted} onChange={sortByStarHandler} />
                 <small>Sort by stars</small>
             </div>
-            <divider></divider>
             <Loader isLoading={isLoading}>
                 <RepoList repoData={repoData} selectedUser={selectedUser} />
             </Loader>

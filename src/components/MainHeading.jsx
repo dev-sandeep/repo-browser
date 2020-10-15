@@ -15,7 +15,7 @@ const MainHeadingSt = styled.div`
     text-transform: capitalize;
     color: #ffff;
     font-weight: 700;
-    font-size: 4em;
+    font-size: 400%;
     margin {
     bottom: 20px;
     }
@@ -28,7 +28,7 @@ const MainHeading = (props)=>{
 }
 
 MainHeading.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node
 }
 
 export default MainHeading;

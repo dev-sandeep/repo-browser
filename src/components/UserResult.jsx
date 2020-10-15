@@ -9,10 +9,11 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import SingleDetailList from './../components/SingleDetailList'
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 const Image = styled.img`
-    width: 250px;
-    height: 250px;
+    width: 40%;
+    height: 40%;
     border-radius: 125px;
     margin: 15%;
 `;
@@ -20,6 +21,7 @@ const Image = styled.img`
 const UserResultSection = styled.section`
     justify-content: center;
     display: grid;
+    text-align: center;
 `;
 
 const ProfilPicDiv = styled.div`
@@ -28,7 +30,13 @@ const ProfilPicDiv = styled.div`
 `;
 
 const DetailDiv = styled.div`
-    max-width: 600px;
+    @media (min-width:600px){
+        min-width: 600px;
+    }
+
+    @media (max-width:599px){
+        min-width: 350px;
+    }
 `;
 
 const NoData = () => <h3>Search an user</h3>
@@ -52,14 +60,19 @@ const UserResult = ({ data }) => {
             </ProfilPicDiv>
 
             <DetailDiv>
-                <SingleDetailList name={"Name"} fullName={data.name} />
-                <SingleDetailList name={"Company"} fullName={data.company} />
-                <SingleDetailList name={"Bio"} fullName={data.Bio} />
-                <SingleDetailList name={"Repositories"} fullName={
-                    <Link to={`/${data.login}/repos`}>Click here</Link>
+                <SingleDetailList text={"Name"} detailText={data.name} />
+                <SingleDetailList text={"Company"} detailText={data.company} />
+                <SingleDetailList text={"Bio"} detailText={data.Bio} />
+                <SingleDetailList text={"Location"} detailText={data.location} />
+                <SingleDetailList text={"Twitter"} detailText={data.twitter_username} />
+                <SingleDetailList text={"Type"} detailText={data.type} />
+
+                <SingleDetailList text={"Repositories"} detailText={
+                    <u><Link to={`/${data.login}/repos`}>{data.public_repos} Repositories</Link></u>
                 } />
-                <SingleDetailList name={"Blog"} fullName={
-                    <a href={data.blog}>Click here to go to blog</a>
+                <SingleDetailList text={"Last Update"} detailText={<Moment fromNow>{data.updated_at}</Moment>} />
+                <SingleDetailList link={data.blog} newTab={true} text={"Blog"} detailText={
+                        data.blog
                 } />
 
                 <Stats data={stats} />
@@ -69,7 +82,7 @@ const UserResult = ({ data }) => {
 }
 
 UserResult.propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.object.isRequired,
 }
 
 export default UserResult;

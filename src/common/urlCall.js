@@ -71,5 +71,6 @@ function get(url) {
 export {
     getUser,
     getRepoDetail,
-    getRepos
+    getRepos,
+    get
 }

@@ -14,6 +14,7 @@ const StatsRow = styled.div`
     justify-content: center;
     padding: 10px;
     margin-top: 17px;
+    margin: 0 auto;
 
     & > div{
         margin: 0 auto;
@@ -39,7 +40,7 @@ const Stats = ({data}) => {
         <div className="stats">
             <StatsRow>
                 {Object.keys(data).map((key) => (
-                    <div>
+                    <div key={key}>
                         <StatsNum>{data[key] || 0}</StatsNum>
                         <small>{key}</small>
                     </div>
@@ -50,7 +51,7 @@ const Stats = ({data}) => {
 }
 
 Stats.propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.any.isRequired,
 }
 
 

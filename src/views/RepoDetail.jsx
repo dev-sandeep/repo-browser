@@ -4,7 +4,7 @@
  * @since 20201014
  */
 import React, { useEffect } from 'react'
-import {getRepoDetail} from './../common/urlCall';
+import {getRepoDetail, get as getCall} from './../common/urlCall';
 import Stats from './../components/Stats';
 import Loader from './../components/Loader'
 import SingleDetailList from './../components/SingleDetailList'
@@ -13,10 +13,19 @@ import Moment from 'react-moment';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const RepoDetailLine = styled.div`
+    @media(min-width:800px){
+        width: 800px;
+    }
+    @media(max-width:800px){
+        width: 95vw;
+    }
+`;
 const RepoWrapper = styled.div`
     justify-content: center;
     display: grid;
     margin-top: 5%;
+    padding: 0% 1%;
 `;
 const RepoDetail = (props) => {
     const repoName = props.match.params.repo;
@@ -25,6 +34,7 @@ const RepoDetail = (props) => {
     const [data, setData] = React.useState({});
     const [isLoader, setIsLoader] = React.useState(false);
     const [stats, setStats] = React.useState([]);
+    const [languages, setLanguages] = React.useState('');
     useEffect(()=>{
         setIsLoader(true);
         getRepoDetail(user, repoName).then((data)=>{
@@ -35,13 +45,20 @@ const RepoDetail = (props) => {
                 "Forks": data.forks,
                 "Open Issues": data.open_issues_count
             });
-
+            loadLanguage(data.languages_url);
             setIsLoader(false);
         }, (e)=>{
             console.error(e);
             setIsLoader(false);
         })
     },[user, repoName]);
+
+    const loadLanguage = (link)=>{
+        getCall(link).then((resp)=>{
+            if(resp.data)
+                setLanguages(Object.keys(resp.data).join(", "));
+        });
+    }
     return (
         <section id="repo-detail">
             <MainHeading>
@@ -51,14 +68,16 @@ const RepoDetail = (props) => {
             <Loader isLoading={isLoader}>
                 <RepoWrapper>
                     <div></div>
-                    <div className="details">
-                        <SingleDetailList fromDetail={true} name={"Name"} fullName={data.full_name} />
-                        <SingleDetailList fromDetail={true} name={"Github Link"} link={data.html_url} fullName={data.html_url} />
-                        <SingleDetailList fromDetail={true} name={"Created On"} fullName={<Moment fromNow>{data.created_at}</Moment>} />
-                        <SingleDetailList fromDetail={true} name={"Last Update"} fullName={<Moment fromNow>{data.updated_at}</Moment>} />
-
+                    <RepoDetailLine className="details">
+                        <SingleDetailList text={"Name"} detailText={data.full_name} />
+                        <SingleDetailList text={"Description"} detailText={data.description} />
+                        <SingleDetailList text={"Language"} detailText={languages} />
+                        <SingleDetailList text={"Created"} detailText={<Moment fromNow>{data.created_at}</Moment>} />
+                        <SingleDetailList text={"Last Updated"} detailText={<Moment fromNow>{data.updated_at}</Moment>} />
+                        <SingleDetailList text={"Github Link"} newTab={true} link={data.html_url} detailText={data.html_url} />
+                        <SingleDetailList text={"Homepage"} newTab={true} link={data.homepage} detailText={data.homepage} />
                         <Stats data={stats} />
-                    </div>
+                    </RepoDetailLine>
 
                 </RepoWrapper>
             </Loader>

@@ -25,7 +25,13 @@ const RouterSt = styled.div`
   min-height: 100vh;
   & > section{
     padding: 10px;
-    width:800px;
+    @media(min-width:800px){
+      width: 800px;
+    }
+    @media(max-width:800px){
+      width: 95vw;
+    }
+
     box-shadow: 5px 5px 10px #bababa;
     background: #1B4C7B;
     color: #fff;
@@ -43,8 +49,9 @@ const reduxData = createStore(reducer);
 function App() {
   return (
     <div className="App">
-       <Router basename={window.location.pathname || ''}>
-      <Header title={"Awesome Github"} />
+       {/* <Router basename={window.location.pathname || ''}> */}
+       <Router>
+      <Header title={"Github Browser"} />
       <Suspense fallback={<Fallback />}>
         <Provider store={reduxData}>
           <RouterSt>

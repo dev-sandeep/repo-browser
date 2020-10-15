@@ -12,8 +12,7 @@ const Title = styled.div`
     color: #fff;
 `;
 const Detail = styled.div`
-    font-size: ${props=>props.isDetailed?'1.5em':'2.5em !important'};
-    line-height: ${props=>props.isDetailed?'1em':'40px'};
+    font-size: '1.5em';
     color: #ffc22e;
     font-weight: 500;
     margin-bottom: 15px;
@@ -27,23 +26,23 @@ const Detail = styled.div`
     }
 `;
 
-const SingleDetailList = ({link, name, fullName, fromDetail}) => {
-    if(!fullName || fullName.length === 0)
+const SingleDetailList = ({link, text, detailText, newTab}) => {
+    if(!detailText || detailText.length === 0)
         return null;
         
     return (<div>
-        <Title className="title">{name}</Title>
-        <Detail isDetailed={fromDetail || false}>
-            {link?(<a href={link}>{fullName}</a>):(<>{fullName}</>)}
+        <Title className="title">{text}</Title>
+        <Detail isDetailed={true}>
+            {link?(<u><a target={newTab?'noopener':''} href={link}>{detailText}</a></u>):(<>{detailText}</>)}
         </Detail>   
     </div>);
 }
 
 SingleDetailList.propTypes = {
-    link: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    fullName: PropTypes.string.isRequired,
-    fromDetail: PropTypes.bool
+    link: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    detailText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    newTab: PropTypes.bool
 
 }
 
